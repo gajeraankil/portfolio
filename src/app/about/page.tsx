@@ -110,9 +110,9 @@ const Page = () => {
           <div className="row">
             <h3 className={`${styles.subTitle} text-uppercase`}>Experience</h3>
             <div className={`d-flex flex-wrap justify-content-between`}>
-              {expSet.map((exp) => {
+              {expSet.map((exp, index) => {
                 return (
-                  <div className={`${styles.col}`}>
+                  <div className={`${styles.col}`} key={index}>
                     <div className="d-flex flex-wrap">
                       <div
                         className={`${styles.expIconSection} position-relative`}

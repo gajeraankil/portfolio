@@ -25,7 +25,7 @@
   margin-bottom: 16px;
 }
 
-.aboutItem {
+.personalInfo .col {
   flex-direction: column;
   flex-basis: 48%;
   padding-bottom: 20px;
@@ -48,9 +48,50 @@
   margin: 0 auto;
 }
 
-.skillList {
-  flex-basis: 48%;
+.skill .col {
+  flex-basis: 50%;
   margin-bottom: 48px;
+}
+
+.experience .col {
+  flex-basis: 100%;
+  margin-bottom: 50px;
+}
+
+.expIconSection {
+  flex-basis: 40px;
+  margin-right: 20px;
+}
+
+.expIcon {
+  height: 40px;
+  border-radius: 50%;
+}
+
+.expIconSection::after {
+  position: absolute;
+  content: "";
+  border: 1px solid #333333;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  z-index: -1;
+}
+
+.expContent {
+  flex-basis: calc(100% - 60px);
+}
+
+.jobTitle {
+  font-size: 17px;
+  font-weight: 500;
+  margin: 7px 0 10px;
+}
+
+.jobRoles {
+  margin: 0;
+  color: #eeeeee;
+  font-size: 14px;
 }
 
 @media (min-width: 575px) {
@@ -64,9 +105,13 @@
     text-align: center;
   }
 
-  .aboutItem {
+  .personalInfo .col {
     flex-direction: row;
     flex-basis: 48%;
+  }
+
+  .jobTitle {
+    font-size: 18px;
   }
 }
 
@@ -76,8 +121,14 @@
     bottom: 50%;
   }
 
-  .skillList {
-    flex-basis: 24%;
+  .skill .col {
+    flex-basis: 25%;
     margin-bottom: 48px;
+  }
+}
+
+@media (min-width: 992px) {
+  .experience .col {
+    flex-basis: 48%;
   }
 }

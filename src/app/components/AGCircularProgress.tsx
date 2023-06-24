@@ -58,7 +58,7 @@ const AGCircularProgress = ({ value, label }: AGCircularProgressProps) => {
           </Box>
         </Box>
         <span className={openSans.className} style={{ fontSize: "16px" }}>
-          {props.label.toUpperCase()}
+          {props.label}
         </span>
       </Box>
     );

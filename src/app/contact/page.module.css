@@ -1,0 +1,130 @@
+.title {
+  font-size: 35px;
+  font-weight: 900;
+  margin-top: 80px;
+}
+
+.titleBg {
+  font-size: 45px;
+  font-weight: 800;
+  line-height: 0.7;
+  color: rgba(255, 255, 255, 0.07);
+  letter-spacing: 10px;
+  left: 0;
+  right: 0;
+  bottom: 100%;
+}
+
+.subTitle {
+  font-size: 21px;
+  margin-bottom: 16px;
+  font-weight: 600;
+}
+
+.contactInfo .col {
+  margin-bottom: 48px;
+}
+
+.contactContent {
+  margin-bottom: 24px;
+}
+
+.contactIcon {
+  margin-right: 17px;
+}
+
+.contactIcon svg {
+  font-size: 33px;
+}
+
+.contactList {
+  margin-bottom: 20px;
+}
+
+.contactListTitle {
+  font-weight: 400;
+  opacity: 0.8;
+}
+
+.contactListContent {
+  font-weight: 600;
+}
+
+.socialIcon {
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  color: #ffffff;
+  background-color: #2b2a2a;
+  border-radius: 50%;
+  margin-right: 12px;
+  transition: all 0.3s ease-in-out;
+}
+
+.socialIcon:hover {
+  background-color: #ffb400;
+}
+
+.contactForm {
+  width: 100%;
+}
+
+.contactForm input,
+.contactForm textarea {
+  width: 100%;
+  color: #fff;
+  background-color: #252525;
+  border: 1px solid #111111;
+  border-radius: 30px;
+  line-height: 24px;
+  padding: 11px 26px;
+  outline: none;
+  margin-bottom: 30px;
+}
+
+.contactForm textarea {
+  width: 100% !important;
+  height: 200px !important;
+  resize: none;
+}
+
+.contactForm input::placeholder,
+.contactForm textarea::placeholder {
+  text-transform: uppercase;
+}
+
+@media (min-width: 575px) {
+  .title {
+    font-size: 56px;
+    text-align: center;
+  }
+
+  .subTitle {
+    font-size: 26px;
+    text-align: center;
+  }
+}
+
+@media (min-width: 768px) {
+  .titleBg {
+    font-size: 110px;
+    bottom: 50%;
+  }
+
+  .personalField {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .personalField input {
+    flex-basis: 48%;
+  }
+}
+
+@media (min-width: 992px) {
+  .contactInfo .col {
+    flex-basis: 48%;
+  }
+}

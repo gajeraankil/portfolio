@@ -32,6 +32,7 @@ const Page = () => {
     "React.JS": 79,
     JavaScript: 68,
     "Next.JS": 51,
+    TypeScript: 55,
     Python: 30,
     HTML: 80,
     CSS: 85,

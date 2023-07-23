@@ -88,7 +88,7 @@ const Page = () => {
           <div className="row d-flex flex-wrap justify-content-between align-items-center">
             <div className={`${styles.col}`}>
               <h3 className={`${styles.subTitle} text-uppercase text-left`}>
-                Don't Be Shy !
+                Don&apos;t Be Shy !
               </h3>
               <p
                 className={`${openSans.className} ${styles.contactContent} text-justify`}

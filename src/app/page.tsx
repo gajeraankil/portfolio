@@ -16,10 +16,6 @@ const openSans = Open_Sans({
 const Page = () => {
   const router = useRouter();
 
-  useEffect(() => {
-    window.open("https://linkslogger.com/gajeraankil", "_blank");
-  }, []);
-
   return (
     <section className="py-56">
       <div className="container">

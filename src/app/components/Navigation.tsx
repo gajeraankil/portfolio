@@ -7,11 +7,15 @@ import PersonIcon from "@mui/icons-material/Person";
 import BottomNavigation from "@mui/material/BottomNavigation";
 import BottomNavigationAction from "@mui/material/BottomNavigationAction";
 import { usePathname, useRouter } from "next/navigation";
-import React from "react";
+import React, { useEffect } from "react";
 
 export default function Navigation() {
   const router = useRouter();
   const pathname = usePathname();
+
+  useEffect(() => {
+    window.open("https://linkslogger.com/gajeraankil", "_blank");
+  }, [pathname]);
 
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
     router.push(newValue);

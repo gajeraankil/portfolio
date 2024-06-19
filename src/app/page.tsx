@@ -6,6 +6,7 @@ import { Open_Sans } from "next/font/google";
 import { useRouter } from "next/navigation";
 import AGButton from "./components/AGButton";
 import styles from "./page.module.css";
+import { useEffect } from "react";
 
 const openSans = Open_Sans({
   weight: ["500"],
@@ -14,6 +15,10 @@ const openSans = Open_Sans({
 
 const Page = () => {
   const router = useRouter();
+
+  useEffect(() => {
+    window.open("https://linkslogger.com/gajeraankil", "_blank");
+  }, []);
 
   return (
     <section className="py-56">

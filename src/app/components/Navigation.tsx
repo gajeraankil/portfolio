@@ -42,12 +42,12 @@ export default function Navigation() {
         icon={<PersonIcon />}
         sx={{ color: "#fff" }}
       />
-      <BottomNavigationAction
+      {/* <BottomNavigationAction
         label="Portfolio"
         value="/portfolio"
         icon={<BusinessCenterIcon />}
         sx={{ color: "#fff" }}
-      />
+      /> */}
       <BottomNavigationAction
         label="Contact"
         value="/contact"

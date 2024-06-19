@@ -63,10 +63,40 @@ const Page = () => {
     subject: "",
     message: "",
   });
+  const [status, setStatus] = useState("");
 
   const handleChange = (e: any) => {
     const { name, value } = e.target;
     setField((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = async () => {
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { Content_Type: "application/json" },
+        body: JSON.stringify({
+          name: field.name,
+          email: field.email,
+          subject: field.subject,
+          message: field.message,
+        }),
+      });
+
+      if (response.status === 200) {
+        setField({
+          name: "",
+          email: "",
+          subject: "",
+          message: "",
+        });
+        setStatus("success");
+      } else {
+        setStatus("error");
+      }
+    } catch (e) {
+      console.error(e);
+    }
   };
 
   return (
@@ -136,7 +166,7 @@ const Page = () => {
                 })}
               </div>
             </div>
-            <form className={`${styles.col} ${styles.contactForm}`}>
+            {/* <form className={`${styles.col} ${styles.contactForm}`}>
               <div className={styles.personalField}>
                 <input
                   type="text"
@@ -144,6 +174,7 @@ const Page = () => {
                   value={field.name}
                   onChange={handleChange}
                   name="name"
+                  autoComplete="off"
                 />
                 <input
                   type="text"
@@ -151,6 +182,7 @@ const Page = () => {
                   value={field.email}
                   onChange={handleChange}
                   name="email"
+                  autoComplete="off"
                 />
               </div>
               <input
@@ -159,21 +191,25 @@ const Page = () => {
                 value={field.subject}
                 onChange={handleChange}
                 name="subject"
+                autoComplete="off"
               />
               <textarea
                 placeholder="Your Message"
                 value={field.message}
                 onChange={handleChange}
                 name="message"
+                autoComplete="off"
               ></textarea>
+              {status === "success" && <p>Thank you for your message</p>}
+              {status === "error" && (
+                <p>There was an error submitting your message</p>
+              )}
               <AGButton
                 label={"Send Message"}
-                handleClick={() => {
-                  console.log(field);
-                }}
+                handleClick={handleSubmit}
                 endIcon={<SendIcon />}
               />
-            </form>
+            </form> */}
           </div>
         </div>
       </section>

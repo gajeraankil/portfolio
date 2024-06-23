@@ -2,13 +2,14 @@
 
 import CallIcon from "@mui/icons-material/Call";
 import DraftsIcon from "@mui/icons-material/Drafts";
+import FacebookIcon from "@mui/icons-material/Facebook";
 import GitHubIcon from "@mui/icons-material/GitHub";
+import InstagramIcon from "@mui/icons-material/Instagram";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
+import WhatsappIcon from "@mui/icons-material/WhatsApp";
 import MapIcon from "@mui/icons-material/Map";
-import SendIcon from "@mui/icons-material/Send";
 import { Open_Sans } from "next/font/google";
 import { useState } from "react";
-import AGButton from "../components/AGButton";
 import styles from "./page.module.css";
 
 const openSans = Open_Sans({
@@ -54,6 +55,18 @@ const Page = () => {
     {
       icon: <LinkedInIcon />,
       path: "https://in.linkedin.com/in/gajeraankil",
+    },
+    {
+      icon: <FacebookIcon />,
+      path: "https://www.facebook.com/gajeraankil",
+    },
+    {
+      icon: <InstagramIcon />,
+      path: "https://www.instagram.com/gajeraankil",
+    },
+    {
+      icon: <WhatsappIcon />,
+      path: "https://wa.me/7046900669?text=Hello",
     },
   ];
 

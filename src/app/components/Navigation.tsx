@@ -13,10 +13,6 @@ export default function Navigation() {
   const router = useRouter();
   const pathname = usePathname();
 
-  useEffect(() => {
-    window.open("https://linkslogger.com/gajeraankil", "_blank");
-  }, [pathname]);
-
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
     router.push(newValue);
   };

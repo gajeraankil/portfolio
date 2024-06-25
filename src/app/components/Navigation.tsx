@@ -1,14 +1,12 @@
 "use client";
 
-import BusinessCenterIcon from "@mui/icons-material/BusinessCenter";
 import DraftsIcon from "@mui/icons-material/Drafts";
 import HomeIcon from "@mui/icons-material/Home";
 import PersonIcon from "@mui/icons-material/Person";
 import BottomNavigation from "@mui/material/BottomNavigation";
 import BottomNavigationAction from "@mui/material/BottomNavigationAction";
 import { usePathname, useRouter } from "next/navigation";
-import React, { useEffect } from "react";
-
+import React from "react";
 export default function Navigation() {
   const router = useRouter();
   const pathname = usePathname();

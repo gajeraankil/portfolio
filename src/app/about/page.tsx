@@ -46,10 +46,32 @@ const Page = () => {
     {
       company: "Gree Web Solutions",
       position: "React.JS Developer",
-      timePeriod: "Aug-2022 - Present",
+      timePeriod: "Aug 2022 - Present",
       role: "Developed scalable React applications, integrated RESTful APIs, utilized state management libraries such as Redux, collaborated with teams, implemented reusable components and conducted code reviews.",
     },
   ];
+
+  const calculateDuration = (startDateStr: string, endDateStr: string) => {
+    const startDate = new Date(startDateStr);
+    const endDate =
+      endDateStr.toLowerCase() === "present"
+        ? new Date()
+        : new Date(endDateStr);
+
+    let yearsDiff = endDate.getFullYear() - startDate.getFullYear();
+    let monthsDiff = endDate.getMonth() - startDate.getMonth();
+
+    if (monthsDiff < 0) {
+      yearsDiff--;
+      monthsDiff += 12;
+    }
+
+    const duration = `${yearsDiff} yr${
+      yearsDiff !== 1 ? "s" : ""
+    } ${monthsDiff} mo${monthsDiff !== 1 ? "s" : ""}`;
+
+    return duration;
+  };
   return (
     <>
       <div className="container">
@@ -112,6 +134,8 @@ const Page = () => {
             <h3 className={`${styles.subTitle} text-uppercase`}>Experience</h3>
             <div className={`d-flex flex-wrap justify-content-between`}>
               {expSet.map((exp, index) => {
+                const [startDateStr, endDateStr] = exp.timePeriod.split(" - ");
+                const duration = calculateDuration(startDateStr, endDateStr);
                 return (
                   <div className={`${styles.col}`} key={index}>
                     <div className="d-flex flex-wrap">
@@ -128,7 +152,7 @@ const Page = () => {
                         <Chip
                           label={
                             <span className={openSans.className}>
-                              {exp.timePeriod}
+                              {`${exp.timePeriod} - (${duration})`}
                             </span>
                           }
                           sx={{
@@ -138,7 +162,6 @@ const Page = () => {
                             padding: "1px 10px",
                             fontWeight: 600,
                             opacity: 0.8,
-                            textTransform: "upperCase",
                             marginBottom: "12px",
                           }}
                         />

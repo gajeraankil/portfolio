@@ -43,9 +43,8 @@
 }
 
 .handIcon {
-  display: none;
+  display: block;
   font-size: 51px;
-  left: 0;
 }
 
 @media (min-width: 576px) {
@@ -103,10 +102,5 @@
     position: relative;
     font-size: 51px;
     line-height: 62px;
-    padding-left: 70px;
-  }
-
-  .handIcon {
-    display: block;
   }
 }

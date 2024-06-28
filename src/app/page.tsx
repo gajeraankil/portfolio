@@ -4,9 +4,9 @@ import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import WavingHandIcon from "@mui/icons-material/WavingHand";
 import { Open_Sans } from "next/font/google";
 import { useRouter } from "next/navigation";
+import { TypeAnimation } from "react-type-animation";
 import AGButton from "./components/AGButton";
 import styles from "./page.module.css";
-import { useEffect } from "react";
 
 const openSans = Open_Sans({
   weight: ["500"],
@@ -28,12 +28,23 @@ const Page = () => {
           </div>
           <div className={`${styles.col}`}>
             <h1 className={`${styles.title} text-primary text-uppercase`}>
-              <span className={`${styles.handIcon} position-absolute`}>
+              <span className={`${styles.handIcon}`}>
                 <WavingHandIcon sx={{ fontSize: "40px" }} />
               </span>
               I&apos;m Ankil Gajera.
               <span className={`${styles.subTitle} text-white`}>
-                Front End Developer
+                <TypeAnimation
+                  sequence={[
+                    "React JS Developer",
+                    1000,
+                    "Web Developer",
+                    1000,
+                    "Freelancer",
+                    1000,
+                  ]}
+                  speed={50}
+                  repeat={Infinity}
+                />
               </span>
             </h1>
             <p

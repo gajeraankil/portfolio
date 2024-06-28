@@ -1,11 +1,9 @@
 "use client";
 
 import BusinessCenterIcon from "@mui/icons-material/BusinessCenter";
-import DownloadIcon from "@mui/icons-material/Download";
 import { Chip } from "@mui/material";
 import { Open_Sans } from "next/font/google";
 import { useRouter } from "next/navigation";
-import AGButton from "../components/AGButton";
 import AGCircularProgress from "../components/AGCircularProgress";
 import styles from "./page.module.css";
 
@@ -29,16 +27,18 @@ const Page = () => {
   };
 
   const skillSet = {
-    "React.JS": 79,
-    JavaScript: 68,
-    "Next.JS": 51,
-    TypeScript: 55,
-    Python: 30,
+    "React.JS": 84,
+    "Next.JS": 55,
+    Redux: 87,
+    TypeScript: 70,
+    JavaScript: 70,
+    "Responsive Web Design": 95,
+    Git: 92,
     HTML: 80,
-    CSS: 85,
+    "CSS / SCSS": 85,
     jQuery: 53,
-    Photoshop: 39,
-    Illustrator: 35,
+    Photoshop: 50,
+    Illustrator: 40,
     Figma: 58,
   };
 
@@ -104,11 +104,11 @@ const Page = () => {
                 </li>
               ))}
             </ul>
-            <AGButton
+            {/* <AGButton
               label={"Download CV"}
               handleClick={() => router.push("/about")}
               endIcon={<DownloadIcon />}
-            />
+            /> */}
           </div>
         </div>
       </section>

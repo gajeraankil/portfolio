@@ -79,7 +79,6 @@
   line-height: 24px;
   padding: 11px 26px;
   outline: none;
-  margin-bottom: 30px;
 }
 
 .contactForm textarea {
@@ -118,8 +117,14 @@
     align-items: center;
   }
 
-  .personalField input {
+  .personalField > div {
+    position: relative;
     flex-basis: 48%;
+    margin-bottom: 30px;
+  }
+
+  .personalField input {
+    margin-bottom: 8px;
   }
 }
 
@@ -127,4 +132,14 @@
   .contactInfo .col {
     flex-basis: 48%;
   }
+}
+
+.contactForm .error {
+  position: absolute;
+  left: 0;
+  top: 100%;
+  color: #ffb400;
+  font-weight: 400;
+  font-size: 12px;
+  opacity: 0.8;
 }

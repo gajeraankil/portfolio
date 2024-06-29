@@ -5,6 +5,8 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { Poppins } from "next/font/google";
 import Head from "next/head";
 import React from "react";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "./globals.css";
 
 const poppins = Poppins({
@@ -37,6 +39,7 @@ export default function RootLayout({
         <body className={`${poppins.className} position-relative text-white`}>
           <Navigation />
           {children}
+          <ToastContainer />
         </body>
       </html>
     </ThemeProvider>

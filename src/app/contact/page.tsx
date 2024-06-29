@@ -1,5 +1,6 @@
 "use client";
 
+import { zodResolver } from "@hookform/resolvers/zod";
 import CallIcon from "@mui/icons-material/Call";
 import DraftsIcon from "@mui/icons-material/Drafts";
 import FacebookIcon from "@mui/icons-material/Facebook";
@@ -7,9 +8,13 @@ import GitHubIcon from "@mui/icons-material/GitHub";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import MapIcon from "@mui/icons-material/Map";
+import SendIcon from "@mui/icons-material/Send";
 import WhatsappIcon from "@mui/icons-material/WhatsApp";
 import { Open_Sans } from "next/font/google";
-import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
+import { z } from "zod";
+import AGButton from "../components/AGButton";
 import styles from "./page.module.css";
 
 const openSans = Open_Sans({
@@ -70,42 +75,48 @@ const Page = () => {
     },
   ];
 
-  const [field, setField] = useState({
-    name: "",
-    email: "",
-    subject: "",
-    message: "",
+  const formSchema = z.object({
+    name: z.string().min(1, "Please enter your name").trim(),
+    email: z
+      .string()
+      .min(1, "Please enter your Email")
+      .email("Enter valid Email")
+      .trim(),
+    subject: z.string().min(1, "Please enter subject").trim(),
+    message: z.string().min(1, "Please enter message").trim(),
   });
-  const [status, setStatus] = useState("");
 
-  const handleChange = (e: any) => {
-    const { name, value } = e.target;
-    setField((prev) => ({ ...prev, [name]: value }));
-  };
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      name: "",
+      email: "",
+      subject: "",
+      message: "",
+    },
+  });
 
-  const handleSubmit = async () => {
+  const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
-      const response = await fetch("/api/contact", {
-        method: "POST",
-        headers: { Content_Type: "application/json" },
-        body: JSON.stringify({
-          name: field.name,
-          email: field.email,
-          subject: field.subject,
-          message: field.message,
-        }),
-      });
+      const response = await fetch(
+        "https://personal-ankil-default-rtdb.firebaseio.com/contact.json",
+        {
+          method: "POST",
+          headers: { Content_Type: "application/json" },
+          body: JSON.stringify(values),
+        }
+      );
 
       if (response.status === 200) {
-        setField({
-          name: "",
-          email: "",
-          subject: "",
-          message: "",
-        });
-        setStatus("success");
+        reset();
+        toast.success("Your message has been submitted.");
       } else {
-        setStatus("error");
+        toast.error("There was an error submitting your message.");
       }
     } catch (e) {
       console.error(e);
@@ -179,50 +190,70 @@ const Page = () => {
                 })}
               </div>
             </div>
-            {/* <form className={`${styles.col} ${styles.contactForm}`}>
+            <form className={`${styles.col} ${styles.contactForm}`}>
               <div className={styles.personalField}>
-                <input
-                  type="text"
-                  placeholder="Your Name"
-                  value={field.name}
-                  onChange={handleChange}
-                  name="name"
-                  autoComplete="off"
-                />
-                <input
-                  type="text"
-                  placeholder="Your Email"
-                  value={field.email}
-                  onChange={handleChange}
-                  name="email"
-                  autoComplete="off"
-                />
+                <div>
+                  <input
+                    type="text"
+                    placeholder="Your Name"
+                    {...register("name")}
+                    name="name"
+                    autoComplete="off"
+                  />
+                  {!!errors?.name && (
+                    <span className={styles.error}>
+                      {errors?.name?.message}
+                    </span>
+                  )}
+                </div>
+                <div>
+                  <input
+                    type="text"
+                    placeholder="Your Email"
+                    {...register("email")}
+                    name="email"
+                    autoComplete="off"
+                  />
+                  {!!errors?.email && (
+                    <span className={styles.error}>
+                      {errors?.email?.message}
+                    </span>
+                  )}
+                </div>
               </div>
-              <input
-                type="text"
-                placeholder="Your Subject"
-                value={field.subject}
-                onChange={handleChange}
-                name="subject"
-                autoComplete="off"
-              />
-              <textarea
-                placeholder="Your Message"
-                value={field.message}
-                onChange={handleChange}
-                name="message"
-                autoComplete="off"
-              ></textarea>
-              {status === "success" && <p>Thank you for your message</p>}
-              {status === "error" && (
-                <p>There was an error submitting your message</p>
-              )}
+              <div style={{ marginBottom: 30, position: "relative" }}>
+                <input
+                  type="text"
+                  placeholder="Your Subject"
+                  {...register("subject")}
+                  name="subject"
+                  autoComplete="off"
+                />
+                {!!errors?.subject && (
+                  <span className={`${styles.error}`}>
+                    {errors?.subject?.message}
+                  </span>
+                )}
+              </div>
+              <div style={{ marginBottom: 30, position: "relative" }}>
+                <textarea
+                  placeholder="Your Message"
+                  {...register("message")}
+                  name="message"
+                  autoComplete="off"
+                ></textarea>
+                {!!errors?.message && (
+                  <span className={`${styles.error}`}>
+                    {errors?.message?.message}
+                  </span>
+                )}
+              </div>
               <AGButton
                 label={"Send Message"}
-                handleClick={handleSubmit}
+                handleClick={handleSubmit(onSubmit)}
                 endIcon={<SendIcon />}
               />
-            </form> */}
+            </form>
           </div>
         </div>
       </section>

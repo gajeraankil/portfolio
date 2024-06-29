@@ -118,9 +118,7 @@
   }
 
   .personalField > div {
-    position: relative;
     flex-basis: 48%;
-    margin-bottom: 30px;
   }
 
   .personalField input {
@@ -142,4 +140,5 @@
   font-weight: 400;
   font-size: 12px;
   opacity: 0.8;
+  margin-left: 15 px;
 }

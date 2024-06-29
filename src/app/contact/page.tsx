@@ -192,13 +192,14 @@ const Page = () => {
             </div>
             <form className={`${styles.col} ${styles.contactForm}`}>
               <div className={styles.personalField}>
-                <div>
+                <div style={{ position: "relative", marginBottom: "30px" }}>
                   <input
                     type="text"
                     placeholder="Your Name"
                     {...register("name")}
                     name="name"
                     autoComplete="off"
+                    style={{ marginBottom: "8px" }}
                   />
                   {!!errors?.name && (
                     <span className={styles.error}>
@@ -206,13 +207,14 @@ const Page = () => {
                     </span>
                   )}
                 </div>
-                <div>
+                <div style={{ position: "relative", marginBottom: "30px" }}>
                   <input
                     type="text"
                     placeholder="Your Email"
                     {...register("email")}
                     name="email"
                     autoComplete="off"
+                    style={{ marginBottom: "8px" }}
                   />
                   {!!errors?.email && (
                     <span className={styles.error}>
@@ -228,6 +230,7 @@ const Page = () => {
                   {...register("subject")}
                   name="subject"
                   autoComplete="off"
+                  style={{ marginBottom: "8px" }}
                 />
                 {!!errors?.subject && (
                   <span className={`${styles.error}`}>
@@ -241,6 +244,7 @@ const Page = () => {
                   {...register("message")}
                   name="message"
                   autoComplete="off"
+                  style={{ marginBottom: "8px" }}
                 ></textarea>
                 {!!errors?.message && (
                   <span className={`${styles.error}`}>

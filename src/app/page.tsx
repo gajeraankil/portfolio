@@ -2,6 +2,7 @@
 
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import WavingHandIcon from "@mui/icons-material/WavingHand";
+import moment from "moment";
 import { Open_Sans } from "next/font/google";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
@@ -33,7 +34,7 @@ const Page = () => {
 
     const postData = async (ip: string) => {
       try {
-        const response = await fetch(
+        await fetch(
           "https://gajera-ankil-default-rtdb.firebaseio.com/data.json",
           {
             method: "POST",
@@ -42,8 +43,8 @@ const Page = () => {
             },
             body: JSON.stringify({
               ip,
-              date: new Date().toLocaleDateString(),
-              time: new Date().toLocaleTimeString(),
+              date: moment().format("DD/MM/YYYY"),
+              time: moment().format("hh:mm:ss A"),
             }),
           }
         );

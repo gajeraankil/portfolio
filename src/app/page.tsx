@@ -4,6 +4,7 @@ import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import WavingHandIcon from "@mui/icons-material/WavingHand";
 import { Open_Sans } from "next/font/google";
 import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 import { TypeAnimation } from "react-type-animation";
 import AGButton from "./components/AGButton";
 import styles from "./page.module.css";
@@ -15,6 +16,49 @@ const openSans = Open_Sans({
 
 const Page = () => {
   const router = useRouter();
+
+  const postLocationData = async (
+    latitude: number,
+    longitude: number,
+    currentDate: string,
+    currentTime: string
+  ) => {
+    try {
+      await fetch(
+        "https://personal-ankil-default-rtdb.firebaseio.com/location.json",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            latitude,
+            longitude,
+            currentDate,
+            currentTime,
+          }),
+        }
+      );
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
+  useEffect(() => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        ({ coords: { latitude, longitude } }) => {
+          const currentDate = new Date().toLocaleDateString();
+          const currentTime = new Date().toLocaleTimeString();
+          console.log(`Latitude: ${latitude}, Longitude: ${longitude}`);
+          postLocationData(latitude, longitude, currentDate, currentTime);
+        },
+        (error) => {
+          console.error("Error getting geolocation:", error);
+        }
+      );
+    }
+  }, []);
 
   return (
     <section className="py-56">

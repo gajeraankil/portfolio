@@ -57,7 +57,10 @@ const AGCircularProgress = ({ value, label }: AGCircularProgressProps) => {
             >{`${Math.round(props.value)}%`}</Typography>
           </Box>
         </Box>
-        <span className={openSans.className} style={{ fontSize: "16px" }}>
+        <span
+          className={openSans.className}
+          style={{ fontSize: "16px", textAlign: "center" }}
+        >
           {props.label}
         </span>
       </Box>

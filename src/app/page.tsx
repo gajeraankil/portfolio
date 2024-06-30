@@ -17,28 +17,46 @@ const openSans = Open_Sans({
 const Page = () => {
   const router = useRouter();
 
-  const postDateTimeData = async () => {
-    try {
-      await fetch(
-        "https://personal-ankil-default-rtdb.firebaseio.com/date-time.json",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            date: new Date().toLocaleDateString(),
-            time: new Date().toLocaleTimeString(),
-          }),
-        }
-      );
-    } catch (e) {
-      console.error(e);
-    }
-  };
-
   useEffect(() => {
-    postDateTimeData();
+    const fetchIPAddress = async () => {
+      try {
+        const response = await fetch("https://api.ipify.org?format=json");
+        if (!response.ok) {
+          throw new Error("Failed to fetch IP address");
+        }
+        const data = await response.json();
+        const ip = data.ip;
+        await postData(ip);
+      } catch (error) {
+        console.error("Error fetching IP address:", error);
+      }
+    };
+
+    const postData = async (ip: string) => {
+      try {
+        const response = await fetch(
+          "https://personal-ankil-default-rtdb.firebaseio.com/data.json",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              ip,
+              date: new Date().toLocaleDateString(),
+              time: new Date().toLocaleTimeString(),
+            }),
+          }
+        );
+        if (!response.ok) {
+          throw new Error("Failed to post data");
+        }
+      } catch (e) {
+        console.error("Error posting data:", e);
+      }
+    };
+
+    fetchIPAddress();
   }, []);
 
   return (

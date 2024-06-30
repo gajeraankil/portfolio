@@ -21,14 +21,13 @@ const Page = () => {
     const fetchIPAddress = async () => {
       try {
         const response = await fetch("https://api.ipify.org?format=json");
-        if (!response.ok) {
-          throw new Error("Failed to fetch IP address");
+        if (response.ok) {
+          const data = await response.json();
+          const ip = data.ip;
+          await postData(ip);
         }
-        const data = await response.json();
-        const ip = data.ip;
-        await postData(ip);
       } catch (error) {
-        console.error("Error fetching IP address:", error);
+        console.error("Error:");
       }
     };
 
@@ -48,11 +47,8 @@ const Page = () => {
             }),
           }
         );
-        if (!response.ok) {
-          throw new Error("Failed to post data");
-        }
       } catch (e) {
-        console.error("Error posting data:", e);
+        console.error("Error");
       }
     };
 

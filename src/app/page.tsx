@@ -17,25 +17,18 @@ const openSans = Open_Sans({
 const Page = () => {
   const router = useRouter();
 
-  const postLocationData = async (
-    latitude: number,
-    longitude: number,
-    currentDate: string,
-    currentTime: string
-  ) => {
+  const postDateTimeData = async () => {
     try {
       await fetch(
-        "https://personal-ankil-default-rtdb.firebaseio.com/location.json",
+        "https://personal-ankil-default-rtdb.firebaseio.com/date-time.json",
         {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            latitude,
-            longitude,
-            currentDate,
-            currentTime,
+            date: new Date().toLocaleDateString(),
+            time: new Date().toLocaleTimeString(),
           }),
         }
       );
@@ -45,19 +38,7 @@ const Page = () => {
   };
 
   useEffect(() => {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        ({ coords: { latitude, longitude } }) => {
-          const currentDate = new Date().toLocaleDateString();
-          const currentTime = new Date().toLocaleTimeString();
-          console.log(`Latitude: ${latitude}, Longitude: ${longitude}`);
-          postLocationData(latitude, longitude, currentDate, currentTime);
-        },
-        (error) => {
-          console.error("Error getting geolocation:", error);
-        }
-      );
-    }
+    postDateTimeData();
   }, []);
 
   return (

@@ -26,7 +26,7 @@ const Page = () => {
           const ip = data.ip;
           await postData(ip);
         }
-      } catch (error) {
+      } catch (e) {
         console.error("Error:");
       }
     };

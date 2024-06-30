@@ -104,7 +104,7 @@ const Page = () => {
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
       const response = await fetch(
-        "https://personal-ankil-default-rtdb.firebaseio.com/contact.json",
+        "https://gajera-ankil-default-rtdb.firebaseio.com/contact.json",
         {
           method: "POST",
           headers: { Content_Type: "application/json" },

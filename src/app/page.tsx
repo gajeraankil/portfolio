@@ -34,7 +34,7 @@ const Page = () => {
     const postData = async (ip: string) => {
       try {
         const response = await fetch(
-          "https://personal-ankil-default-rtdb.firebaseio.com/data.json",
+          "https://gajera-ankil-default-rtdb.firebaseio.com/data.json",
           {
             method: "POST",
             headers: {
